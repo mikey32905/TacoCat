@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
     <head>
-        <title>App Name: A Coding Project by Mike Williams</title>
+        <title>TACO CAT: A Coding Project by Mike Williams</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,7 +22,7 @@
         <!--Nav Section-->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="img/MikeWilliams(2)-Mark.png" clas="d-inline-block align-text-top" width="30" height="24"> APP NAME</a>
+                <a class="navbar-brand" href="#"><img src="img/MikeWilliams(2)-Mark.png" clas="d-inline-block align-text-top" width="30" height="24"> TACO CAT</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -52,25 +52,78 @@
         <!--Main Section-->
         <main class="flex-shrink-0">
             <div class="container py-4 px-5 mt-5">
-                <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>
+                <h2 class="border-1 border-bottom border-dark">The Code for TACO CAT.</h2>
                 <div class="row row-cols-1 row-cols-lg-2">
                     <!--Code Embed-->
                     <!--Paste Javascript code between <code> </code>-->
                     <div class="col-lg-8">
                         <pre class="line-numbers"><code class="language-javascript">                          
-                                //Call Hello World
-                                function HelloWorld(){
-                                    alert("Hello World!!");
+                            //Get the entered value
+                            function getValue(){
+                                document.getElementById("alert").classList.add("invisible");
+                            
+                                let userString = document.getElementById("userString").value;
+                            
+                                let returnOBJ = checkForPalindrome(userString)
+                            
+                                displayMessage(returnOBJ);
+                            }
+                            
+                            
+                            //Test for palindrome
+                            function checkForPalindrome(userString){
+                                //set to lower case
+                                userString = userString.toLowerCase();
+                            
+                                //remove spaces and special characters
+                                let regex = /[^a-z0-9]+/gi;
+                                userString = userString.replace(regex, '');
+                            
+                                //Reverse string
+                                let reverseString = [];
+                                let returnOBJ = {};
+                            
+                                for (let i = userString.length - 1;i >=0; i-- ){
+                                    reverseString += userString[i];
                                 }
+                            
+                                if (reverseString == userString){
+                                    returnOBJ.msg = "Well Done!!  You entered a palindrome!";
+                                } else {
+                                    returnOBJ.msg = "Sorry!! You did not enter a palindrome!";
+                                }
+                            
+                                returnOBJ.reversed = reverseString;
+                            
+                                return returnOBJ;
+                            }
+                            
+                            
+                            //display result message
+                            function displayMessage(returnOBJ){
+                                document.getElementById("alertHeader").innerHTML = returnOBJ.msg;
+                                document.getElementById("message").innerHTML = `Your phrase reversed is: ${returnOBJ.reversed}`;
+                                document.getElementById("alert").classList.remove("invisible");
+                            }
                         </code>
                         </pre>
                     </div>
 
                     <!--Description-->
                     <div class="col-lg-4">
-                        <p>The code is structured in one function.</p>
-                        <h5>Hello World</h5>
-                        <p>Hello World is a function that displays an alert with a message of "Hello World".</p>
+                        <img src="/img/TacoCatLogo.png" class="img-fluid center-block d-block ax-auto" alt="App logo" width="700" height="500">
+                        <p>The code is structured in three functions.</p>
+                        <h5>getValue</h5>
+                        <p>getValue retrieves the string entered by the user in the form.</p>
+                        <h5>checkForPalindrome</h5>
+                        <p>checkForPalindrome takes the entered user string and checks whether or not it is a palindrome.
+                            It first converts the userstring to lower case and strips any special characters away using a 
+                            regex match replace.  The results and the reversed string are stored into an object, which is
+                            returned for display.
+                        </p>
+                        <h5>displayMessage</h5>
+                        <p>displayMessage displays the reversed string and result from an object to the screen via an html 
+                            template.  Also, the alert display is turned on to display results.</p>
                     </div>
                 </div>
             </div>
